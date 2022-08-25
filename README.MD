@@ -19,3 +19,9 @@ PlgTracker.initInstance(appIdentifier, trackerEndpoint, initialParams);
 ```
 PlgTracker.dropPixel("page", "view", {});
 ```
+
+
+* Build Instructions
+```
+npm run build
+```
