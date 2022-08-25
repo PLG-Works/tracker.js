@@ -10,11 +10,9 @@ class Tracker {
   }
 
   initInstance(appIdentifier, trackerEndpoint, initialParams) {
-    console.log("cp1");
     if ( !this.isBrowser ) {
       return;
     }
-    console.log("cp1.a");
     this.coreInstance = new TrackerCore(appIdentifier, trackerEndpoint, initialParams);
   }
 

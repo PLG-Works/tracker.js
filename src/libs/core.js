@@ -12,7 +12,6 @@ const CONST = {
 
 export default class TrackerCore {
   constructor( appIdentifier, pixelPath) {
-    console.log("cp2");
     const oThis = this;
     oThis.pixelPathPrefix = pixelPath || "/pixel.png";
     oThis.paramNames      = {
@@ -39,16 +38,12 @@ export default class TrackerCore {
     oThis.precomputeParamPromise = null;
     oThis.pixelContainer = null;
     oThis.precomputedParams = "";
-    // oThis.initParams = {
-    //   'ai' : appIdentifier
-    // };
 
     oThis.uaParser = new UAParser();
-    console.log("cp2.a");
-    oThis.init();
+    oThis.init( appIdentifier );
   }
 
-  init() {
+  init( appIdentifier ) {
     const oThis = this;
     
     oThis.createPixelContainer();
@@ -56,6 +51,7 @@ export default class TrackerCore {
     oThis.initTrackerIdPromise();
     oThis.precomputeParams();
     oThis.initParams = {
+      ai    : appIdentifier,
       dos   : oThis.getOSName(),
       dl    : navigator.language,
       isTouchDevice   : oThis.getIsTouchDevice() ? 1 : 0
@@ -155,10 +151,10 @@ export default class TrackerCore {
           pName  	= paramNames.referrerUri
     ;
 
-    let refUri     = document.referrer;
+    let refUrl     = document.referrer;
     /* Send Empty String in Param */
-    refUri = encodeURIComponent( refUri );
-    return pName + "=" + refUri;
+    refUrl = encodeURIComponent( refUrl );
+    return pName + "=" + refUrl;
   }
 
   getEventActionParam( eventAction ) {
