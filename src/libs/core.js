@@ -30,6 +30,7 @@ export default class TrackerCore {
       ,timeStamp          : "ts"
       ,trackerId          : "tid"
       ,trackerSesId       : "sesid"
+      ,pageUrl            : "purl"
     };
     oThis.commonParamNames = ['tid', 'uid', 'sesid', 'tz', 'rurl', 'bh', 'bw', 'ce', 'dh', 'dw', 'ir', 'dr']
     oThis.deviceFingerPrint = null;
@@ -57,7 +58,6 @@ export default class TrackerCore {
     oThis.initParams = {
       dos   : oThis.getOSName(),
       dl    : navigator.language,
-      purl  : window.location.href,
       isTouchDevice   : oThis.getIsTouchDevice() ? 1 : 0
     };
   }
@@ -89,8 +89,6 @@ export default class TrackerCore {
     ;
 
     params.push( oThis.getTimeZoneParam() );
-    params.push( oThis.getReferrerUriParam() );
-    params.push( oThis.getBrowserHeightAndWidthParams() );
     params.push( oThis.getIsCookieEnabledParam() );
     params.push( oThis.getScreenHeightAndWidthParams() );
     params.push( oThis.getScreenResolutionParams() );
@@ -143,6 +141,14 @@ export default class TrackerCore {
     return pName + "=" + timeZoneOffset;
   }
 
+  getPageUrlParam() {
+    const oThis       = this,
+          paramNames  = oThis.paramNames,
+          pName       = paramNames.pageUrl
+    ;
+    return pName + "=" + encodeURIComponent( window.location.href );
+  }
+
   getReferrerUriParam() {
     const oThis		= this,
           paramNames = oThis.paramNames,
@@ -192,7 +198,7 @@ export default class TrackerCore {
     ;
     for( objKey in initParams ) { if( initParams.hasOwnProperty( objKey ) ){
       objVal = initParams[ objKey ];
-      params.push( objKey + "=" + objVal );
+      params.push( objKey + "=" + encodeURIComponent(objVal) );
     }}
     return params.join( "&" );
   }
@@ -291,10 +297,12 @@ export default class TrackerCore {
     ;
 
     let   params       = [],
-          pixelPath    = oThis.getPixelPathPrefix() + "?"
-          
+          pixelPath    = oThis.getPixelPathPrefix() + "?"       
     ;
 
+    params.push( oThis.getPageUrlParam() );
+    params.push( oThis.getReferrerUriParam() );
+    params.push( oThis.getBrowserHeightAndWidthParams() );
     params.push( oThis.getEventEntityParam( eventEntity ) );
     params.push( oThis.getEventActionParam( eventAction ) );
     params.push( oThis.getInitParams() );
@@ -439,4 +447,3 @@ export default class TrackerCore {
     return pairs;
   }
 }
-  
