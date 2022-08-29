@@ -32,10 +32,12 @@ class ObservableHistoryClass {
     setTimeout(() => {
       const href = oThis.getLocationHref();
       const fromUrl = oThis.currentUrl;
+      const eventName = 'onUrlChanged';
       if( fromUrl !== href ) {
         oThis.currentUrl = href;
+        console.log(`Firing ${eventName}`);
         // Href has changed.
-        emitter.emit('onUrlChanged', [{
+        emitter.emit(eventName, [{
           from: fromUrl,
           to: href
         }]);
@@ -66,6 +68,7 @@ class ObservableHistoryClass {
         input: args,
         output: retVal
       };
+      console.log(`Firing ${eventName}`);
       emitter.emit(eventName, [summary]);
       return retVal;
     };
