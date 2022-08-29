@@ -1,6 +1,7 @@
 import EventEmitter from "eventemitter3";
 const emptyObject = {};
 const emitter = new EventEmitter();
+const DEBUG = false;
 const capitalize = ( str ) => {
   if ( typeof str === 'string' && str.length > 0) {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -11,10 +12,10 @@ class ObservableHistoryClass {
   constructor() {
     const oThis = this;
     oThis.originalUrl = oThis.getLocationHref();
-    oThis.currentUrl  = oThis.originalPageUrl;
-    console.log("addGenericEvents...");
+    oThis.currentUrl  = oThis.originalUrl;
+    DEBUG && console.log("addGenericEvents...");
     oThis.addGenericEvents();
-    console.log("addCustomEvents...");
+    DEBUG && console.log("addCustomEvents...");
     oThis.addCustomEvents();
   }
 
@@ -37,7 +38,7 @@ class ObservableHistoryClass {
       const eventName = 'onUrlChanged';
       if( fromUrl !== href ) {
         oThis.currentUrl = href;
-        console.log(`Firing ${eventName}`);
+        DEBUG && console.log(`Firing ${eventName}`);
         // Href has changed.
         emitter.emit(eventName, [{
           from: fromUrl,
@@ -62,7 +63,7 @@ class ObservableHistoryClass {
 
   wrapHistoryMethod( fnName, fn, historyObj ) {
     let eventName = "on" + capitalize(fnName);
-    console.log("EventName", eventName);
+    DEBUG && console.log("EventName", eventName);
     let orgFn = fn;
     return (...args) => {
       let retVal = orgFn.apply( historyObj, args );
@@ -70,7 +71,7 @@ class ObservableHistoryClass {
         input: args,
         output: retVal
       };
-      console.log(`Firing ${eventName}`);
+      DEBUG && console.log(`Firing ${eventName}`);
       emitter.emit(eventName, [summary]);
       return retVal;
     };
