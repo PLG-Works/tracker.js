@@ -12,7 +12,9 @@ class ObservableHistoryClass {
     const oThis = this;
     oThis.originalUrl = oThis.getLocationHref();
     oThis.currentUrl  = oThis.originalPageUrl;
+    console.log("addGenericEvents...");
     oThis.addGenericEvents();
+    console.log("addCustomEvents...");
     oThis.addCustomEvents();
   }
 
