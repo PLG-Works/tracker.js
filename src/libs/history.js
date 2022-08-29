@@ -35,7 +35,7 @@ class ObservableHistoryClass {
     setTimeout(() => {
       const href = oThis.getLocationHref();
       const fromUrl = oThis.currentUrl;
-      const eventName = 'onUrlChanged';
+      const eventName = 'urlChange';
       if( fromUrl !== href ) {
         oThis.currentUrl = href;
         DEBUG && console.log(`Firing ${eventName}`);
@@ -97,6 +97,10 @@ class ObservableHistoryClass {
   }
 }
 
-const ObservableHistory = new ObservableHistoryClass()
+// Make sure ObservableHistoryClass is instanciated only client side.
+if ( typeof window !== 'undefined') {
+  const ObservableHistory = new ObservableHistoryClass();
+}
+
 const HistoryObserver = emitter;
 export default HistoryObserver;
