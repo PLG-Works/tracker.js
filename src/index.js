@@ -1,4 +1,5 @@
 import TrackerCore from "./libs/core";
+import HistoryObserver from "./libs/history"; 
 
 class Tracker {
 
@@ -31,9 +32,14 @@ class Tracker {
     return this.coreInstance.dropPixel(...args);
   }
 
+  getHistoryObserver() {
+    return HistoryObserver;
+  }
+
   getCoreClass() {
     return TrackerCore;
   }
 }
 
 export default new Tracker();
+export {HistoryObserver};
