@@ -106,7 +106,7 @@ OR
     PlgTracker.dropPixel("add_to_cart", "click", {"page_name": "product", "product_id": "123"});
 ```
 
-The fired pixel will have parameter names shortened and parameter values URI encoded. The parameter names are shortened to keep the pixel URL withing the permissable character length. An example of the formatted pixel is given below:
+The fired pixel will have parameter names shortened and parameter values URI encoded. The parameter names are shortened to keep the pixel URL within the permissable character length. An example of the formatted pixel is given below:
 ```
 https://example.com/pixel.png?tid=341c6cd8b4020124a62e17b216621117&sesid=341c6cd8b4020124a62e17b2166211171661425858063&ee=page&ea=view&uid=543210&tz=-330&pn=product&pid=9769&purl=https%3A%2F%2Fexample.com%3F&rurl=https%3A%2F%2Fexample.com%3Freferrer%3Dproducthunt%26product%3Dtracker&ref=footer&utm_type=u_type&utm_source=u_source&utm_medium=u_medium&utm_campaign=u_campaign&utm_term=u_term&utm_content=u_content&ai=WEB&dr=2880X1754&dos=MacOS&dl=en-GB&ir=1&dw=1440&dh=877&bw=1440&bh=798&ce=1&user_rating=%F0%9F%98%80%20Happy
 ```
