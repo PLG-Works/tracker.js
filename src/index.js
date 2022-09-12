@@ -42,4 +42,3 @@ class Tracker {
 }
 
 export default new Tracker();
-export {HistoryObserver};

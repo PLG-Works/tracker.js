@@ -1,13 +1,34 @@
-# Installation
+# Installation and Import.
+`Tracker.js` can be installed as an npm module.
+It can also be hosted as an external script for multi-page applications. 
+
+## Method 1: Install as NPM Module
 ```
 npm install @plgworks/tracker --save
 ```
 
-# Importing, Initialization and Dropping Page View pixel in Multipage application.
-
+Import it like any other library.
 ```js
 import PlgTracker from "@plgworks/tracker";
+```
 
+## Method 2: Hosting the script on your server.
+Host the [tracker.js]("./dist/tracker.1.0.0.min.js") file on your your server and use the following code:
+```html
+<script type='text/javascript'>
+  window.PlgTracker = window.PlgTracker || {
+    q: function(m,args) {this._q = this._q || []; this._q.push({m:m, a: args});},
+    initInstance: function(){ this.q("initInstance", arguments) },
+    dropPixel: function() { this.q("dropPixel", arguments); },
+  };
+</script>
+<script type='text/javascript' defer src='PATH_TO_HOSTED_TRACKER.JS'></script>
+```
+> **Note:** The hosted version does not support `PlgTracker.getHistoryObserver` (only needed for SPA use-cases and is optional to use). Please let us know your use-case if you would like to use it.
+
+# Initialization and Dropping Page View pixel in Multipage application.
+
+```js
 // Initialize the tracker - needs to be done once.
 const appIdentifier = 'APP_IDENTIFIER';
 const trackerEndpoint = 'https://TRACKER_ENDPOINT';
