@@ -13,7 +13,7 @@ import PlgTracker from "@plgworks/tracker";
 ```
 
 ## Method 2: Hosting the script on your server.
-Host the [tracker.js]("./dist/tracker.1.0.0.min.js") file on your your server and use the following code:
+Host the `tracker.1.0.0.min.js` located in dist folder on your server and use the following code:
 ```html
 <script type='text/javascript'>
   window.PlgTracker = window.PlgTracker || {
