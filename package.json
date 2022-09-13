@@ -1,6 +1,6 @@
 {
   "name": "@plgworks/tracker",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "PLGWorks ReactJs Tracker",
   "main": "dist/main.js",
   "scripts": {
