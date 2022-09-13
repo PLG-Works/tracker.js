@@ -4,7 +4,7 @@
   const PACKAGE = require('./package.json');
   
   const commonjs2Config = {
-    mode: 'development',
+    mode: 'production',
     entry: path.resolve(__dirname + '/src/index.js'),
     output: {
       path: path.resolve(__dirname + '/dist/'),
@@ -17,7 +17,7 @@
   };
 
   const hostedScriptConfig = {
-    mode: 'development',
+    mode: 'production',
     entry: path.resolve(__dirname + '/src/hosted.js'),
     output: {
       path: path.resolve(__dirname + '/dist/'),
