@@ -134,5 +134,7 @@ https://example.com/pixel.png?tid=341c6cd8b4020124a62e17b216621117&sesid=341c6cd
 
 # Build Instructions
 ```
+npm install
+rm -rf ./dist/*
 npm run build
 ```
